@@ -780,9 +780,11 @@ st.caption("写真を撮る（またはアップロード）すると、前方�
 def load_model():
     model_path = "model.pt"
     if not os.path.exists(model_path):
-        url = "https://drive.google.com/uc?id=16EZt6ck39bNJfiHWsTJtlBwppAvDqfgZ"
+        url = "https://drive.google.com/uc?id=16xu8auKHrSKAw7q9XGC7Chyuna-4ztGJ"
         gdown.download(url, model_path, quiet=False)
     return YOLO(model_path)
+
+
 
 model = load_model()
 
