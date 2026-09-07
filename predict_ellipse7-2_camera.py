@@ -8,6 +8,8 @@ import random
 import cv2
 from scipy import optimize
 from PIL import Image
+import os
+import gdown
 
 def preprocess_640(img):
     """PIL画像を受け取り、中心正方形にトリミング→640×640にリサイズして返す。
@@ -776,7 +778,11 @@ st.caption("写真を撮る（またはアップロード）すると、前方�
 
 @st.cache_resource
 def load_model():
-    return YOLO("yolo11x-seg-custom.pt")
+    model_path = "model.pt"
+    if not os.path.exists(model_path):
+        url = "https://drive.google.com/uc?id=16EZt6ck39bNJfiHWsTJtlBwppAvDqfgZ"
+        gdown.download(url, model_path, quiet=False)
+    return YOLO(model_path)
 
 model = load_model()
 
