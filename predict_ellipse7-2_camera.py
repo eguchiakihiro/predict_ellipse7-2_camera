@@ -7,7 +7,7 @@ import csv
 import random
 import cv2
 from scipy import optimize
-from PIL import Image
+from PIL import Image, ImageOps
 import os
 import gdown
 
@@ -792,7 +792,7 @@ image_file = st.file_uploader(
 )
 
 if image_file is not None:
-    pil_image = Image.open(image_file)
+    pil_image = ImageOps.exif_transpose(Image.open(image_file)).convert("RGB")
     with st.spinner("計測中..."):
         measurements, annotated_rgb = run_measurement(model, pil_image)
 
