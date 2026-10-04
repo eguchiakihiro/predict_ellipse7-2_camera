@@ -786,13 +786,14 @@ def load_model():
 
 model = load_model()
 
-tab_cam, tab_upload = st.tabs(["カメラで撮影", "画像をアップロード"])
-with tab_cam:
-    cam_file = st.camera_input("カメラで撮影")
-with tab_upload:
-    up_file = st.file_uploader("画像を選択", type=["jpg", "jpeg", "png"])
+st.caption(
+    "「Browse files」から、写真を撮影するか保存済みの画像を選んでください。"
+)
 
-image_file = cam_file or up_file
+image_file = st.file_uploader(
+    "写真を撮影・画像を選択",
+    type=["jpg", "jpeg", "png"],
+)
 
 if image_file is not None:
     pil_image = Image.open(image_file)
