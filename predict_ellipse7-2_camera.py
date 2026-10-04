@@ -773,8 +773,6 @@ def run_measurement(model, pil_image):
 import streamlit as st
 
 st.set_page_config(page_title="股関節計測", layout="centered")
-st.title("股関節計測アプリ")
-st.caption("写真を撮る（またはアップロード）すると、前方開角・外転角・脚長を計測します。")
 
 @st.cache_resource
 def load_model():
@@ -803,19 +801,4 @@ if image_file is not None:
 
     st.image(annotated_rgb, caption="計測結果", use_container_width=True)
 
-    st.subheader("計測結果")
-    col1, col2 = st.columns(2)
-    labels = [
-        ("右 前方開角", "right_anteversion_angle", "°"),
-        ("左 前方開角", "left_anteversion_angle", "°"),
-        ("右 外転角", "right_abduction_angle", "°"),
-        ("左 外転角", "left_abduction_angle", "°"),
-        ("右 脚長", "right_leg_length", "mm"),
-        ("左 脚長", "left_leg_length", "mm"),
-    ]
-    for i, (jp, key, unit) in enumerate(labels):
-        col = col1 if i % 2 == 0 else col2
-        val = measurements.get(key)
-        col.metric(jp, f"{val:.1f} {unit}" if val is not None else "測定不可")
-else:
-    st.info("カメラで撮影するか、画像をアップロードしてください。")
+    
