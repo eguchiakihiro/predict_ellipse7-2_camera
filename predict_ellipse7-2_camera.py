@@ -786,10 +786,6 @@ def load_model():
 
 model = load_model()
 
-st.caption(
-    "「Browse files」から、写真を撮影するか保存済みの画像を選んでください。"
-)
-
 image_file = st.file_uploader(
     "写真を撮影・画像を選択",
     type=["jpg", "jpeg", "png"],
